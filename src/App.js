@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import LetterTable from './components/LetterTable';
 import getWord from './services/randomWord';
 
 const App = () => {
@@ -11,7 +12,10 @@ const App = () => {
   }, []);  // [] tells React to only run this once
 
   return (
-    <h1>{word}</h1>
+    <>
+      <h1>{word}</h1>
+      <LetterTable />
+    </>
   );
 }
 
