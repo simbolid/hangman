@@ -56,11 +56,13 @@ io.on("connection", socket => {
             io.to(user.room).emit('roomData', {room: user.room, users: getUsersInRoom(user.room)})
     })
 
-    socket.on('message', (payload, callback) => {
-        const user = getUser(socket.id)
-        io.to(user.room).emit('message', {user: user.name, text: payload.message})
-        callback()
+    socket.on('message', (data) => {
+       socket.to(data.room).emit("message", data)
     })
+
+    //Once we connect to the socket: 
+
+    console.log("user connected", socket.id)
 })
 
 server.listen(PORT, () => {
