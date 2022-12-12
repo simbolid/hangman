@@ -1,8 +1,32 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { nanoid } from 'nanoid';
+import { io } from 'socket.io-client';
 
-const Lobby = ({ client }) => {
+let socket
+const ENDPOINT = 'http://localhost:8081'
+
+
+const Lobby = () => {
+    
+    useEffect(() => { 
+        const connectionOptions = {
+            "forceNew" : true,
+            "reconnectionAttempts": "Infinity", 
+            "timeout" : 10000,                  
+            "transports" : ["websocket"]
+        }
+        socket = io.connect(ENDPOINT, connectionOptions); 
+
+        socket.emit('join', {room: room}, (error) => {
+            if (error)
+                setRoomFull(true)
+        })
+    })
+
+
+
+
   const [user, setUser] = useState('');
   const navigate = useNavigate();
 
@@ -12,6 +36,8 @@ const Lobby = ({ client }) => {
       value: message
     }));
   };
+
+  
 
   const createRoom = () => {
     const gameId = nanoid(6);
