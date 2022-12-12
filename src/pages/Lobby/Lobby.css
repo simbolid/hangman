@@ -1,4 +1,6 @@
 button{
+    margin-left: 45%;
+    margin-top: 7%;
     align-items: center;
     appearance: none;
     background-color: #FCFCFD;
@@ -41,3 +43,32 @@ button:active {
         box-shadow: #D6D6E7 0 3px 7px inset;
         transform: translateY(2px);
       }
+
+.App{
+
+}
+h2{
+  text-align: center;
+}
+p{
+  text-align: center;
+}
+#inputField{
+  margin-top: 5%;
+  margin-left: 40%;
+}
+#back{
+  margin-top: 70px;
+  margin-left: 46.5%;
+  padding: 10px 30px;
+  background: #0a0a0a;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.5s;
+  }
+  #back:hover{
+      background: #6a6b6d;
+  }

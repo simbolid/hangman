@@ -1,17 +1,17 @@
 .TitleText {
   font-family: "JetBrains Mono", monospace;
-  margin-left: 550px;
-  margin-top: 200px;
+  margin-left: 37%;
+  margin-top: 15%;
 }
 
 .options {
-  margin-top: 100px;
-  margin-left: 500px;
+  margin-top: 5%;
+  margin-left: 29%;
   display: flex;
 }
 
 #mp {
-  margin-left: 100px;
+  margin-left: 10%;
 }
 
 .button-30 {
@@ -61,7 +61,10 @@
   box-shadow: #d6d6e7 0 3px 7px inset;
   transform: translateY(2px);
 }
+<<<<<<< HEAD
 #options {
   display: flex;
   flex-direction: row;
 }
+=======
+>>>>>>> 7d286cd49d33c3bb621257b38653ddba71c8020a

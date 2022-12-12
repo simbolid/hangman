@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import { io } from 'socket.io-client';
 import "./Lobby.css"
@@ -13,6 +13,7 @@ const socket = io.connect("http://localhost:3001");
 
 
 const Lobby = () => {
+  let navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [room, setRoom] = useState("");
     const [showChat, setShowChat] = useState(false);
@@ -21,23 +22,23 @@ const Lobby = () => {
       if (username !== "" && room !== "") {
         socket.emit("join_room", room);
         setShowChat(true);
-        
-        
-        axios.post("http://localhost:3001/addLeaderBoard", { 
-          room: room, 
-          author: username, 
-          score: 0
-        })
+      } else {
+        alert("NEED NAME & ROOM")
       }
 
       
     };
-  
+    function nav(){
+      navigate("/");
+    }
     return (
       <div className="App">
         {!showChat ? (
           <div className="joinChatContainer">
-            <h3>Join A Chat</h3>
+            <h2>Multi-Player Mode:</h2>
+            <p>Instructions: <br /><br />1. <i>Create</i> your own room and share it with your friends</p>
+            <p>2. <i>Join</i> a room with an existing code</p>
+            <div id = "inputField">
             <input
               type="text"
               placeholder="John..."
@@ -52,7 +53,10 @@ const Lobby = () => {
                 setRoom(event.target.value);
               }}
             />
+            </div>
+
             <button onClick={joinRoom}>Join A Room</button>
+            <button id = "back" onClick={() => nav()} > Back </button>
           </div>
         ) : (
           <Multiplayer socket={socket} username={username} room={room} />
