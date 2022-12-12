@@ -71,6 +71,14 @@ const Lobby = () => {
         <button onClick={() => createRoom()}>
           Create Room
         </button>
+        <form onSubmit={() => enterRoom()}>
+         <input 
+           id ="code" 
+           placeholder='ID of room to join' 
+           value={123} 
+           onChange = {(e) => setRoomCode(e.target.value)}>
+         </input>
+         </form>
       </div>
       
     </>
