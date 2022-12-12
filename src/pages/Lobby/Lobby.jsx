@@ -22,7 +22,11 @@ export default function Lobby({client}) {
     }
   return (
     <div>
+        <h1>
+            Enter or create game room
+        </h1>
        <div>
+        <button>Create Game Room</button>
       {user ?
         <button onClick={() => onButtonClick("Hello!")}>send button</button>
         : 

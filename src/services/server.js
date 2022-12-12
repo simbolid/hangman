@@ -33,6 +33,8 @@ wsServer.on("request", request => {
             }
         }
     })
+
+    
     const payload = { 
         "method": "connect",
         "clientId": clientId
