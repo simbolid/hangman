@@ -12,7 +12,9 @@
     "axios": "^1.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.5",
     "react-scripts": "5.0.1",
+<<<<<<< HEAD
     "reflect-metadata": "^0.1.13",
     "socket-controllers": "^0.0.5",
     "socket.io-client": "^4.5.4",
@@ -21,6 +23,10 @@
     "universal-cookie": "^4.0.4",
     "web-vitals": "^2.1.4",
     "websocket": "^1.0.34"
+=======
+    "react-toastify": "^9.1.1",
+    "web-vitals": "^2.1.4"
+>>>>>>> f1b02fa630598c01b5fe82f629028ac6137764b9
   },
   "scripts": {
     "start": "react-scripts start",
