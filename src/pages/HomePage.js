@@ -4,12 +4,10 @@ import './HomePage.css'
 function HomePage(){
     let navigate = useNavigate();
     function handleSP(){
-      
         navigate("/sp")
     }
     function handleMP(){
         navigate("/mp")
-
     }
 
     return (

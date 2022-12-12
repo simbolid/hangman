@@ -18,7 +18,20 @@ const App = () => {
   const [word, setWord] = useState(getRandomWord());
   const [wrongLetters, setWrongLetters] = useState(0);
   const [display, setDisplay] = useState(Array(word.length).fill('_'));
-  const [timer, setTimer] = useState(0);
+  const [seconds, setSeconds] = useState(10);
+  const [minutes, setMinutes] = useState(0); 
+  var timer;
+  useEffect(() => { 
+    timer = setInterval(() => { 
+        setSeconds(seconds - 1);
+        if(seconds === 0) {
+          setLostGame(true);
+          setSeconds(10)
+        }
+    }, 1000)
+    return() => clearInterval(timer)
+  });
+  
   // necessary to correctly display alerts for winning/losing
   const [lostGame, setLostGame] = useState(false);
 
@@ -78,7 +91,7 @@ const App = () => {
 
       setTimeout(() => {
         resetGame();
-      }, 3000);
+      }, 2000);
     }
   }, [lostGame]);
 
@@ -106,12 +119,17 @@ const App = () => {
   function handleBack(){
     navigate("/");
   }
- 
+  function handleStart(){
+
+  }
   return (
     <>
     <div id = "container">
     
       <HangmanGraphic numWrongLetters={wrongLetters} id = "hGraphic"/>
+      <div id = "timer">
+      {minutes}:{seconds}
+      </div>
       <div id = "hidden">
       <HiddenWord display={display} id = "Words" />
       </div>
