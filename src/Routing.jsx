@@ -13,7 +13,7 @@ const Routing = () => (
       <Route path="/*" element={<HomePage />} />
       <Route path="/sp" element={<SinglePlayer />} />
       <Route path="/mp" element={<Lobby client={client} />} />
-      <Route path="/room" element={<WaitingPage gameId='1234' />} />
+      <Route path="/room" element={<WaitingPage />} />
     </Routes>
   </BrowserRouter>
 );
