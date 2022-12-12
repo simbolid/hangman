@@ -24,7 +24,7 @@ const App = () => {
 
       toast.success('🦄 You got it!', {
         position: "bottom-center",
-        autoClose: 5000,
+        autoClose: 1200,
         hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
@@ -34,7 +34,7 @@ const App = () => {
       });
 
       setWord(newWord);
-      setDisplay(Array(word.length).fill('_'));
+      setDisplay(Array(newWord.length).fill('_'));
       doRefreshLetters(prev => prev + 1);
     }
   }, [display]);
@@ -63,7 +63,6 @@ const App = () => {
       <LetterTable selectLetter={selectLetter} refresh={refreshLetters} />
       <ToastContainer
         position="bottom-center"
-        autoClose={5000}
         hideProgressBar
         newestOnTop={false}
         closeOnClick
