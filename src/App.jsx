@@ -13,20 +13,39 @@ import Search from 'antd/es/transfer/search';
 import Lobby from './pages/Lobby/Lobby';
 
 //const client = new W3CWebSocket("ws://127.0.0.1:8080");
+function helper(){
+  let level = JSON.parse(sessionStorage.getItem("LevelInfo"));
+  if(level === "E"){
+    return 90;
+  }
+  if(level === "M"){
+    return 45;
+  }
+  if(level === "H"){
+    return 25;
+  }
+}
 const App = () => {
   let navigate = useNavigate();
   const [word, setWord] = useState(getRandomWord());
   const [wrongLetters, setWrongLetters] = useState(0);
   const [display, setDisplay] = useState(Array(word.length).fill('_'));
-  const [seconds, setSeconds] = useState(10);
+  const [seconds, setSeconds] = useState(helper());
   const [minutes, setMinutes] = useState(0); 
   var timer;
+  // if(level === null || level === "M"){
+  //   setSeconds(60)
+  // } else if(level === "E"){
+  //   setSeconds(45)
+  // } else if(level === "H"){
+  //   setSeconds(30)
+  // }
   useEffect(() => { 
     timer = setInterval(() => { 
         setSeconds(seconds - 1);
         if(seconds === 0) {
           setLostGame(true);
-          setSeconds(10)
+          setSeconds(helper())
         }
     }, 1000)
     return() => clearInterval(timer)
@@ -119,16 +138,13 @@ const App = () => {
   function handleBack(){
     navigate("/");
   }
-  function handleStart(){
-
-  }
   return (
     <>
     <div id = "container">
     
       <HangmanGraphic numWrongLetters={wrongLetters} id = "hGraphic"/>
       <div id = "timer">
-      {minutes}:{seconds}
+      Timer: {seconds}s 
       </div>
       <div id = "hidden">
       <HiddenWord display={display} id = "Words" />
