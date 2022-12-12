@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import HangmanGraphic from './components/HangmanGraphic';
 import HiddenWord from './components/HiddenWord';
 import LetterTable from './components/LetterTable';
 import getRandomWord from './services/randomWord';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   const [word, setWord] = useState(getRandomWord());
@@ -16,6 +18,17 @@ const App = () => {
       while (newWord === word) {
         newWord = getRandomWord();
       }
+
+      toast.success('🦄 You got it!', {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
 
       setWord(newWord);
       setDisplay(Array(word.length).fill('_'));
@@ -44,6 +57,18 @@ const App = () => {
     <>
       <HiddenWord display={display} />
       <LetterTable selectLetter={selectLetter} />
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </>
   );
 };
