@@ -4,6 +4,7 @@ import { nanoid } from 'nanoid';
 import { io } from 'socket.io-client';
 import "./Lobby.css"
 import Chat from './Chat';
+import Multiplayer from './Multiplayer';
 
 
 
@@ -44,7 +45,7 @@ const Lobby = () => {
             <button onClick={joinRoom}>Join A Room</button>
           </div>
         ) : (
-          <Chat socket={socket} username={username} room={room} />
+          <Multiplayer socket={socket} username={username} room={room} />
         )}
       </div>
     );
