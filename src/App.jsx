@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import HangMan from './components/hangMan/HangMan';
 import LetterTable from "./components/letterTable/LetterTable";
 import getWord from './services/randomWord';
 
@@ -15,6 +16,7 @@ const App = () => {
     <>
       <h1>{word}</h1>
       <LetterTable />
+     
     </>
   );
 }
