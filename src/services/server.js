@@ -27,9 +27,11 @@ io.on("connection", (socket) => {
     socket.to(data.room).emit("receive_message", data);
   });
 
-  socket.on('end_game', (data) => {
-    console.log(data)
-  })
+  socket.on('won_game', (data) => {
+    // console.log(data)
+    socket.to(data.room).emit("other_player_won", data);
+  });
+
 });
 
 server.listen(3001, () => {
