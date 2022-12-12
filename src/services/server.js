@@ -14,7 +14,7 @@ app.use(cors())
 
 
 io.on("connection", socket => {
-    socket.on("join", (payload, callback) =>{
+   /* socket.on("join", (payload, callback) =>{
         let numberOfUsersInRoom = getUsersInRoom(payload.room).length; 
 
 
@@ -60,9 +60,24 @@ io.on("connection", socket => {
        socket.to(data.room).emit("message", data)
     })
 
+    socket.on('joinroom', (data) => {
+        socket.join(data)
+        console.log("joined room")
+    })
+
     //Once we connect to the socket: 
 
     console.log("user connected", socket.id)
+    */
+
+    console.log(`⚡: ${socket.id} user just connected!`);
+    socket.on('disconnect', () => {
+      console.log('🔥: A user disconnected');
+    });
+
+    socket.on('message', (data) => {
+        console.log(data)
+    })
 })
 
 server.listen(PORT, () => {
