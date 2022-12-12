@@ -67,6 +67,7 @@ const App = () => {
 
     setLostGame(false);
     setWord(newWord);
+    setSeconds(helper());
     setDisplay(Array(newWord.length).fill('_'));
     doRefreshLetters(prev => prev + 1);
     setWrongLetters(0);
@@ -95,6 +96,7 @@ const App = () => {
 
   useEffect(() => {
     if (lostGame) {
+      setSeconds(helper());
       toast.error('Guess limit reached!', {
         position: "bottom-center",
         autoClose: 2500,

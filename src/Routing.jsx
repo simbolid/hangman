@@ -14,7 +14,6 @@ const Routing = () => (
       <Route path="/sp" element={<SinglePlayer />} />
       <Route path="/mp" element={<Lobby/>} />
       <Route path="/room" element={<WaitingPage />} />
-      
     </Routes>
   </BrowserRouter>
 );
