@@ -12,7 +12,7 @@ import { w3cwebsocket as W3CWebSocket} from 'websocket';
 import Search from 'antd/es/transfer/search';
 import Lobby from './pages/Lobby/Lobby';
 
-const client = new W3CWebSocket("ws://127.0.0.1:8080");
+//const client = new W3CWebSocket("ws://127.0.0.1:8080");
 const App = () => {
   let navigate = useNavigate();
   const [word, setWord] = useState(getRandomWord());
