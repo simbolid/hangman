@@ -17,7 +17,7 @@ const Lobby = ({ client }) => {
 
     client.send(JSON.stringify({
         type: "createRoom",
-        value: id
+        value: 123 //Change to id
     }))
     navigate('/room');
 
