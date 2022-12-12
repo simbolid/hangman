@@ -1,24 +1,18 @@
 import { useState, useEffect } from 'react';
 import HangmanGraphic from './components/HangmanGraphic';
-import LetterTable from './components/letterTable/LetterTable';
+import HiddenWord from './components/HiddenWord';
+import LetterTable from './components/LetterTable';
 import getWord from './services/randomWord';
 
 const App = () => {
-  const [word, setWord] = useState('');
-
-  // choose a random word when the app first loads
-  useEffect(() => {
-    const rand_word = getWord();
-    setWord(rand_word);
-  }, []);  // [] tells React to only run this once
+  const [word, setWord] = useState(getWord());
 
   return (
     <>
-      <h1>{word}</h1>
+      <HiddenWord word={word}/>
       <LetterTable />
-     
     </>
   );
-}
+};
 
 export default App;
