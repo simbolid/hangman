@@ -2,8 +2,7 @@ import React from 'react'
 import "./hangMan.css"
 export default function HangMan({numWrongLetters}) {
 
-    const errors = numWrongLetters; 
-    
+const errors = numWrongLetters; 
   return (
     <div>
        <svg height="250" width="200" className="figure-container">
