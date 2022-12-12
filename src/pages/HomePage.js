@@ -1,11 +1,15 @@
 
+import { useNavigate } from 'react-router-dom';
 import './HomePage.css'
 function HomePage(){
+    let navigate = useNavigate();
     function handleSP(){
-        alert("IN HERE");
+      
+        navigate("/sp")
     }
     function handleMP(){
         alert("IN HERqE");
+        
     }
 
     return (
