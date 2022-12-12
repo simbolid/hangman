@@ -1,19 +1,29 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { nanoid } from 'nanoid';
-import { io } from 'socket.io-client';
+
 import "./Lobby.css"
-let socket
-const ENDPOINT = 'http://localhost:8081'
 
 
-const Lobby = () => {
+const Lobby = ({socket}) => {
 
 
-  const navigate = useNavigate();
-  const [room, setRoomCode] = useState('');
+ const navigate = useNavigate();
+ const [room, setRoom] = useState('')
 
-   socket = io.connect(ENDPOINT)
+  const creatRoom = ()=>{
+    /*
+    const roomId = nanoid(6);
+    setRoom(roomId)
+
+    if (room != ''){
+        socket.emit("joinroom", room)
+    }
+    navigate('/room', { state: roomId });*/
+  }
+
+  
+
 
    /* useEffect(() => { 
         const connectionOptions = {
@@ -37,12 +47,13 @@ const Lobby = () => {
     }, [])*/
 
     const sendMessage = () => {
-        socket.emit("message", {message: "Hello"})
+        socket.emit("message", {text: "message", message: "Hello", socketId: socket.id})
+        console.log("sendingMessage")
     }
 
 
   
-  const createRoom = () => {
+  const joinRoom = () => {
     /*
     const gameId = nanoid(6);
 
@@ -67,8 +78,8 @@ const Lobby = () => {
         Enter or Create A Room
       </h1>
       <div>
-        <button onClick={() => sendMessage()}>sendMessage</button>
-        <button onClick={() => createRoom()}>
+        <button onClick={() => sendMessage("HELLO")}>sendMessage</button>
+        <button onClick={() => creatRoom()}>
           Create Room
         </button>
         <form onSubmit={() => enterRoom()}>
@@ -76,7 +87,7 @@ const Lobby = () => {
            id ="code" 
            placeholder='ID of room to join' 
            value={123} 
-           onChange = {(e) => setRoomCode(e.target.value)}>
+           onChange = {(e) => setRoom(e.target.value)}>
          </input>
          </form>
       </div>
