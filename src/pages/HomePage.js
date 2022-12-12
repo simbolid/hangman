@@ -8,8 +8,8 @@ function HomePage(){
         navigate("/sp")
     }
     function handleMP(){
-        alert("IN HERqE");
-        
+        navigate("/mp")
+
     }
 
     return (
