@@ -1,44 +1,45 @@
-import React, { useState, useEffect } from 'react'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import Search from 'antd/es/transfer/search';
 
+const Lobby = ({ client }) => {
+  const [user, setUser] = useState('');
+  const navigate = useNavigate();
 
-export default function Lobby({client}) {
+  const onButtonClick = (message) => {
+    client.send(JSON.stringify({
+      type: "message",
+      value: message
+    }));
+  };
 
-    const [user, setUser] = useState('');
-    const [isLogedIn, login] = useState(false);
-   
-  
-    const onButtonClick = (message) => { 
-      client.send(JSON.stringify({
-        type: "message",
-        value: message
-      }))
-    }
-   
-    function setState(value){
-      login(true)
-      setUser(value)
-      console.log("You are logged in");
-    }
+  const createRoom = () => {
+    navigate('/room');
+  };
+
   return (
-    <div>
-        <h1>
-            Enter or create game room
-        </h1>
-       <div>
-        <button>Create Game Room</button>
-      {user ?
-        <button onClick={() => onButtonClick("Hello!")}>send button</button>
-        : 
-        <div style={{padding : '200px 40px'}}>
-        <Search
-          placeholder='Enter Game'
-          size="large"
-          onSearch={() => onButtonClick("Login")}
-          />
+    <>
+      <h1>
+        Enter or create game room
+      </h1>
+      <div>
+        <button onClick={() => createRoom()}>
+          Create Game Room
+        </button>
+        {user ?
+          <button onClick={() => onButtonClick("Hello!")}>send button</button>
+          :
+          <div style={{ padding: '200px 40px' }}>
+            <Search
+              placeholder='Enter Game'
+              size="large"
+              onSearch={() => onButtonClick("Login")}
+            />
           </div>
-      }
+        }
       </div>
-    </div>
+    </>
   )
-}
+};
+
+export default Lobby;
