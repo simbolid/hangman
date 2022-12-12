@@ -27,17 +27,10 @@ export default function Lobby({client}) {
         </h1>
        <div>
         <button>Create Game Room</button>
-      {user ?
+      
         <button onClick={() => onButtonClick("Hello!")}>send button</button>
-        : 
-        <div style={{padding : '200px 40px'}}>
-        <Search
-          placeholder='Enter Game'
-          size="large"
-          onSearch={() => onButtonClick("Login")}
-          />
-          </div>
-      }
+    
+        
       </div>
     </div>
   )

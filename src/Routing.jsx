@@ -5,7 +5,7 @@ import Lobby from "./pages/Lobby/Lobby";
 import { w3cwebsocket as W3CWebSocket} from 'websocket'; 
 
 
-const client = new W3CWebSocket("ws://127.0.0.1:8080");
+const client = new W3CWebSocket("ws://127.0.0.1:8081");
 const Routing = () => {
     
     return (

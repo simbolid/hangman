@@ -1,6 +1,6 @@
 const http = require("http");
 const websocketServer = require("websocket").server; 
-const webSocketServerPort = 8080; 
+const webSocketServerPort = 8081; 
 
 
 
@@ -24,13 +24,19 @@ wsServer.on("request", request => {
 
     //on message handler: 
     connection.on('message', function(message){
-        if (message.type = 'utf8'){
+        if (message.type == 'utf8'){
             console.log("Recieved Message: ", message.utf8Data); 
 
             for (key in clients){
                 clients[key].sendUTF(message.utf8Data); 
                 console.log("sent message to ", clientId); 
             }
+        }
+    })
+
+    connection.on('createRoom', function(message){
+        if (message.type == 'utf8'){
+            console.log("room created", message.utf8Data);
         }
     })
 
@@ -42,6 +48,12 @@ wsServer.on("request", request => {
     connection.send(JSON.stringify(payload));
 
 })
+
+
+const getUsersInRoom = room => {
+    return users.filter(user => user.room === room)
+}
+
 
 
 function S4() {
