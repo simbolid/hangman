@@ -13,8 +13,14 @@ const Lobby = ({ client }) => {
     }));
   };
 
-  const createRoom = () => {
+  const createRoom = (id) => {
+
+    client.send(JSON.stringify({
+        type: "createRoom",
+        value: id
+    }))
     navigate('/room');
+
   };
 
   return (
@@ -26,17 +32,7 @@ const Lobby = ({ client }) => {
         <button onClick={() => createRoom()}>
           Create Game Room
         </button>
-        {user ?
-          <button onClick={() => onButtonClick("Hello!")}>send button</button>
-          :
-          <div style={{ padding: '200px 40px' }}>
-            <Search
-              placeholder='Enter Game'
-              size="large"
-              onSearch={() => onButtonClick("Login")}
-            />
-          </div>
-        }
+        <button onClick={() => onButtonClick("Hello!")}>send button</button>
       </div>
     </>
   )
