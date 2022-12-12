@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 
 const STATES = {
@@ -29,8 +29,12 @@ const StyledTd = styled.td(props => ({
   cursor: props.cursor,
 }));
 
-const Letter = ({ letter, onSelect }) => {
+const Letter = ({ letter, onSelect, refresh }) => {
   const [status, setStatus] = useState(STATES.UNSELECTED);
+
+  useEffect(() => {
+    setStatus(STATES.UNSELECTED);
+  }, [refresh]);
 
   const handleClick = () => {
     if (status === STATES.UNSELECTED) {
@@ -39,6 +43,7 @@ const Letter = ({ letter, onSelect }) => {
       setStatus(newStatus);
     }
   };
+
 
   return (
     <StyledTd 

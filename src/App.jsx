@@ -10,6 +10,9 @@ const App = () => {
   const [word, setWord] = useState(getRandomWord());
   const [display, setDisplay] = useState(Array(word.length).fill('_'));
 
+  // hack to reset LetterTable -- see https://stackoverflow.com/questions/37949981
+  const [refreshLetters, doRefreshLetters] = useState(0);
+
   useEffect(() => {
     if (display.join('') === word) {
       let newWord = getRandomWord();
@@ -32,6 +35,7 @@ const App = () => {
 
       setWord(newWord);
       setDisplay(Array(word.length).fill('_'));
+      doRefreshLetters(prev => prev + 1);
     }
   }, [display]);
 
@@ -56,7 +60,7 @@ const App = () => {
   return (
     <>
       <HiddenWord display={display} />
-      <LetterTable selectLetter={selectLetter} />
+      <LetterTable selectLetter={selectLetter} refresh={refreshLetters} />
       <ToastContainer
         position="bottom-center"
         autoClose={5000}
