@@ -6,11 +6,17 @@ import HangmanGraphic from '../../components/HangManGraphic';
 import HiddenWord from '../../components/HiddenWord';
 import LetterTable from '../../components/LetterTable';
 import getRandomWord from '../../services/randomWord';
+import LeaderBoard from '../../components/LeaderBoard';
+import './multiplayer.css'
 
 export default function Multiplayer({ socket, username, room }) {
   const [word, setWord] = useState(getRandomWord());
   const [wrongLetters, setWrongLetters] = useState(0);
   const [display, setDisplay] = useState(Array(word.length).fill('_'));
+
+  const [leaderBoard, getLeaderBoard] = useState([]);
+
+
 
   // necessary to correctly display alerts for winning/losing
   const [lostGame, setLostGame] = useState(false);
@@ -127,24 +133,32 @@ export default function Multiplayer({ socket, username, room }) {
 
   return (
     <>
-      <div id="container">
-        <HangmanGraphic numWrongLetters={wrongLetters} id="hGraphic" />
-        <div id="hidden">
-          <HiddenWord display={display} id="Words" />
+      <div id="containerMultiplayer">
+        <div className='left'>
+          <LeaderBoard/>
         </div>
-        <LetterTable selectLetter={selectLetter} refresh={refreshLetters} id="allLetters" />
+          <div className='right'>
+          <HangmanGraphic numWrongLetters={wrongLetters} id="hGraphic" />
+          <div id="hidden">
+            <HiddenWord display={display} id="Words" />
+          </div>
+          <LetterTable selectLetter={selectLetter} refresh={refreshLetters} id="allLetters" />
 
-        <ToastContainer
-          position="bottom-center"
-          hideProgressBar
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="dark"
-        />
+          <ToastContainer
+            position="bottom-center"
+            hideProgressBar
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+          />
+
+        </div>
+    
+        
         <div id="buttons">
           <button id="backButtons" onClick={() => handleBack()}>
             Back

@@ -1,0 +1,9 @@
+#containerMultiplayer {
+  display: flex;
+}
+
+.left {
+  margin-right: 20vw;
+}
+.right {
+}

@@ -1,0 +1,22 @@
+.leaderBoard {
+  font-family: "JetBrains Mono", monospace;
+}
+.leaderBoardTile {
+  font-family: "Courier", monospace;
+  color: white;
+}
+.leaderBoardHeader {
+  display: flex;
+  background-color: black;
+  justify-content: center;
+  align-items: center;
+}
+
+.leaderBoardContainer {
+  min-width: 20vw;
+  max-width: 20vw;
+}
+
+.scoreCard {
+  display: flex;
+}

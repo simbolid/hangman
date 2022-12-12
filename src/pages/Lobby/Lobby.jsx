@@ -5,6 +5,7 @@ import { io } from 'socket.io-client';
 import "./Lobby.css"
 import Chat from './Chat';
 import Multiplayer from './Multiplayer';
+import axios from 'axios';
 
 
 
@@ -20,7 +21,16 @@ const Lobby = () => {
       if (username !== "" && room !== "") {
         socket.emit("join_room", room);
         setShowChat(true);
+        
+        
+        axios.post("http://localhost:3001/addLeaderBoard", { 
+          room: room, 
+          author: username, 
+          score: 0
+        })
       }
+
+      
     };
   
     return (
