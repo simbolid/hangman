@@ -29,11 +29,15 @@ const StyledTd = styled.td(props => ({
   cursor: props.cursor,
 }));
 
-const Letter = ({ letter }) => {
+const Letter = ({ letter, onSelect }) => {
   const [status, setStatus] = useState(STATES.UNSELECTED);
 
   const handleClick = () => {
-    setStatus(STATES.WRONG);
+    if (status === STATES.UNSELECTED) {
+      const correct = onSelect(letter);
+      const newStatus = correct ? STATES.CORRECT : STATES.WRONG;
+      setStatus(newStatus);
+    }
   };
 
   return (

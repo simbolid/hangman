@@ -1,12 +1,10 @@
-import { useState, useEffect } from "react";
-
-const HiddenWord = ({ word }) => {
-  const [display, setDisplay] = useState(Array(word.length).fill('_'));
-
+const HiddenWord = ({ display }) => {
   return (
     <h1>
-      {display.map((letter) => 
-        <span>{letter}&nbsp;</span> 
+      {display.map((letter, idx) => 
+        <span key={idx}>
+          {letter}&nbsp;
+        </span> 
       )}
     </h1>
   );
