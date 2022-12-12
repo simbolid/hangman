@@ -1,9 +1,9 @@
 
 
-function singlePlayer( ){
+function SinglePlayer( ){
 
 
      
 }
 
-export default singlePlayer; 
+export default SinglePlayer; 
