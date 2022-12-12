@@ -19,6 +19,7 @@ const Routing = () => (
       <Route path="/sp" element={<SinglePlayer />} />
       <Route path="/mp" element={<Lobby socket={socket}/>} />
       <Route path="/room" element={<WaitingPage />} />
+      
     </Routes>
   </BrowserRouter>
 );
