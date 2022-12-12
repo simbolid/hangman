@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import LetterTable from './components/LetterTable';
+import LetterTable from "./components/letterTable/LetterTable";
 import getWord from './services/randomWord';
 
 const App = () => {
