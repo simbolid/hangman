@@ -2,11 +2,25 @@ import { useState, useEffect } from 'react';
 import HangmanGraphic from './components/HangmanGraphic';
 import HiddenWord from './components/HiddenWord';
 import LetterTable from './components/LetterTable';
-import getWord from './services/randomWord';
+import getRandomWord from './services/randomWord';
 
 const App = () => {
-  const [word, setWord] = useState(getWord().toUpperCase());
+  const [word, setWord] = useState(getRandomWord());
   const [display, setDisplay] = useState(Array(word.length).fill('_'));
+
+  useEffect(() => {
+    if (display.join('') === word) {
+      let newWord = getRandomWord();
+
+      // prevent the same word from appearing twice
+      while (newWord === word) {
+        newWord = getRandomWord();
+      }
+
+      setWord(newWord);
+      setDisplay(Array(word.length).fill('_'));
+    }
+  }, [display]);
 
   const selectLetter = (letter) => {
     const newDisplay = [];
