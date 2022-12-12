@@ -2,9 +2,9 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 const StyledSvg = styled.svg`
-  background-color: blue;
+  background-color: white;
   fill: transparent;
-  stroke: #fff;
+  stroke: black;
   stroke-width: 4px;
   stroke-linecap: round;
 `;
@@ -13,7 +13,7 @@ const HangmanGraphic = ({ numWrongLetters }) => {
   const errors = numWrongLetters;
 
   return (
-    <div>
+    <div id = "container">
       <StyledSvg height="250" width="200" className="figure-container">
         {/* <!-- Rod --> */}
         <line x1="60" y1="20" x2="140" y2="20" />

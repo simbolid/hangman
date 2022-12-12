@@ -1,16 +1,18 @@
 import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import HangmanGraphic from './components/HangmanGraphic';
+import HangmanGraphic from './components/HangManGraphic';
 import HiddenWord from './components/HiddenWord';
 import LetterTable from './components/LetterTable';
 import getRandomWord from './services/randomWord';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { useNavigate } from 'react-router-dom';
+import './App.css'
 const App = () => {
+  let navigate = useNavigate();
   const [word, setWord] = useState(getRandomWord());
   const [wrongLetters, setWrongLetters] = useState(0);
   const [display, setDisplay] = useState(Array(word.length).fill('_'));
-
+  const [timer, setTimer] = useState(0);
   // necessary to correctly display alerts for winning/losing
   const [lostGame, setLostGame] = useState(false);
 
@@ -95,12 +97,20 @@ const App = () => {
 
     return correctLetter;
   };
-
+  function handleBack(){
+    navigate("/");
+  }
+ 
   return (
     <>
-      <HiddenWord display={display} />
-      <LetterTable selectLetter={selectLetter} refresh={refreshLetters} />
-      <HangmanGraphic numWrongLetters={wrongLetters} />
+    <div id = "container">
+    
+      <HangmanGraphic numWrongLetters={wrongLetters} id = "hGraphic"/>
+      <div id = "hidden">
+      <HiddenWord display={display} id = "Words" />
+      </div>
+      <LetterTable selectLetter={selectLetter} refresh={refreshLetters} id = "allLetters" />
+     
       <ToastContainer
         position="bottom-center"
         hideProgressBar
@@ -112,6 +122,12 @@ const App = () => {
         pauseOnHover
         theme="dark"
       />
+      <div id = "buttons">
+      <button id = "backButtons" onClick={ () => handleBack()}>
+        Back
+      </button>
+      </div>
+      </div>
     </>
   );
 };

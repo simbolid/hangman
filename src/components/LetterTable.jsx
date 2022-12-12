@@ -1,7 +1,7 @@
 import Letter from './Letter';
-
+import './LetterTable.css'
 const LetterTable = ({ selectLetter, refresh }) => (
-  <table>
+  <table id = "table">
     <tbody>
       <tr>
         <Letter letter='A' onSelect={selectLetter} refresh={refresh} />
@@ -25,7 +25,7 @@ const LetterTable = ({ selectLetter, refresh }) => (
         <Letter letter='Q' onSelect={selectLetter} refresh={refresh} />
         <Letter letter='R' onSelect={selectLetter} refresh={refresh} />
       </tr>
-      <tr>
+      <tr id = "third">
         <Letter letter='S' onSelect={selectLetter} refresh={refresh} />
         <Letter letter='T' onSelect={selectLetter} refresh={refresh} />
         <Letter letter='U' onSelect={selectLetter} refresh={refresh} />
