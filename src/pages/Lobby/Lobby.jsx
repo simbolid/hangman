@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import Search from 'antd/es/transfer/search';
+import { nanoid } from 'nanoid';
 
 const Lobby = ({ client }) => {
   const [user, setUser] = useState('');
@@ -13,14 +13,15 @@ const Lobby = ({ client }) => {
     }));
   };
 
-  const createRoom = (id) => {
+  const createRoom = () => {
+    const gameId = nanoid(6);
 
     client.send(JSON.stringify({
         type: "createRoom",
-        value: id
-    }))
-    navigate('/room');
+        value: gameId,
+    }));
 
+    navigate('/room', { state: gameId });
   };
 
   return (
