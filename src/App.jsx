@@ -7,7 +7,6 @@ import getRandomWord from './services/randomWord';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import './App.css'
-import LetterTable from "./components/letterTable/LetterTable";
 import getWord from './services/randomWord';
 import { w3cwebsocket as W3CWebSocket} from 'websocket'; 
 import Search from 'antd/es/transfer/search';
