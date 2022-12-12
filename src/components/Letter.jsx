@@ -29,7 +29,6 @@ const StyledTd = styled.td(props => ({
   cursor: props.cursor,
 }));
 
-
 const Letter = ({ letter }) => {
   const [status, setStatus] = useState(STATES.UNSELECTED);
 

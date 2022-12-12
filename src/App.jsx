@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import HangMan from './components/hangMan/HangMan';
-import LetterTable from "./components/letterTable/LetterTable";
+import HangmanGraphic from './components/HangmanGraphic';
+import LetterTable from './components/letterTable/LetterTable';
 import getWord from './services/randomWord';
 
 const App = () => {
