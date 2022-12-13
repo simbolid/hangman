@@ -7,50 +7,39 @@ import getRandomWord from './services/randomWord';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import './App.css'
-import getWord from './services/randomWord';
-import { w3cwebsocket as W3CWebSocket} from 'websocket'; 
-import Search from 'antd/es/transfer/search';
-import Lobby from './pages/Lobby/Lobby';
 
-//const client = new W3CWebSocket("ws://127.0.0.1:8080");
-function helper(){
+function helper() {
   let level = JSON.parse(sessionStorage.getItem("LevelInfo"));
-  if(level === "E"){
+  if (level === "E") {
     return 90;
   }
-  if(level === "M"){
+  if (level === "M") {
     return 45;
   }
-  if(level === "H"){
+  if (level === "H") {
     return 25;
   }
 }
+
 const App = () => {
   let navigate = useNavigate();
   const [word, setWord] = useState(getRandomWord());
   const [wrongLetters, setWrongLetters] = useState(0);
   const [display, setDisplay] = useState(Array(word.length).fill('_'));
   const [seconds, setSeconds] = useState(helper());
-  const [minutes, setMinutes] = useState(0); 
   var timer;
-  // if(level === null || level === "M"){
-  //   setSeconds(60)
-  // } else if(level === "E"){
-  //   setSeconds(45)
-  // } else if(level === "H"){
-  //   setSeconds(30)
-  // }
-  useEffect(() => { 
-    timer = setInterval(() => { 
-        setSeconds(seconds - 1);
-        if(seconds === 0) {
-          setLostGame(true);
-          setSeconds(helper())
-        }
+
+  useEffect(() => {
+    timer = setInterval(() => {
+      setSeconds(seconds - 1);
+      if (seconds === 0) {
+        setLostGame(true);
+        setSeconds(helper())
+      }
     }, 1000)
-    return() => clearInterval(timer)
+    return () => clearInterval(timer)
   });
-  
+
   // necessary to correctly display alerts for winning/losing
   const [lostGame, setLostGame] = useState(false);
 
@@ -63,7 +52,7 @@ const App = () => {
     // prevent the same word from appearing twice
     do {
       newWord = getRandomWord();
-    } while (newWord === word); 
+    } while (newWord === word);
 
     setLostGame(false);
     setWord(newWord);
@@ -87,7 +76,7 @@ const App = () => {
       });
 
       resetGame();
-    } 
+    }
 
     else if (wrongLetters === 6) {
       setLostGame(true);
@@ -97,10 +86,10 @@ const App = () => {
   useEffect(() => {
     if (lostGame) {
       setSeconds(helper());
-      toast.error('Guess limit reached!', {
+      toast.error('Sorry, you lost :(', {
         position: "bottom-center",
         autoClose: 2500,
-        hideProgressBar: true,
+        // hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
@@ -137,38 +126,38 @@ const App = () => {
 
     return correctLetter;
   };
-  function handleBack(){
+
+  function handleBack() {
     navigate("/");
   }
+
   return (
     <>
-    <div id = "container">
-    
-      <HangmanGraphic numWrongLetters={wrongLetters} id = "hGraphic"/>
-      <div id = "timer">
-      Timer: {seconds}s 
-      </div>
-      <div id = "hidden">
-      <HiddenWord display={display} id = "Words" />
-      </div>
-      <LetterTable selectLetter={selectLetter} refresh={refreshLetters} id = "allLetters" />
-     
-      <ToastContainer
-        position="bottom-center"
-        hideProgressBar
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
-      <div id = "buttons">
-      <button id = "backButtons" onClick={ () => handleBack()}>
-        Back
-      </button>
-      </div>
+      <div id="container">
+        <HangmanGraphic numWrongLetters={wrongLetters} id="hGraphic" />
+        <div id="timer">
+          Timer: {seconds}s
+        </div>
+        <div id="hidden">
+          <HiddenWord display={display} id="Words" />
+        </div>
+        <LetterTable selectLetter={selectLetter} refresh={refreshLetters} id="allLetters" />
+        <ToastContainer
+          position="bottom-center"
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
+        <div id="buttons">
+          <button id="backButtons" onClick={() => handleBack()}>
+            Back
+          </button>
+        </div>
       </div>
     </>
   );

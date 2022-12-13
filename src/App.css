@@ -1,27 +1,35 @@
-#container{
+#container {
     display: flex;
     flex-direction: column;
     margin: auto;
-    background-color:white;
+    background-color: white;
 }
-#hidden{
-margin: auto;
+
+#hidden {
+    margin: auto;
 }
-#timer{
+
+#timer {
     margin-left: 85%;
+    width: 40px;
+    height: 30px;
+    font-size: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-#backButtons{
-margin-top: 70px;
-margin-left: 675px;
-padding: 10px 30px;
-background: #0a0a0a;
-color: #fff;
-font-weight: bold;
-border: none;
-border-radius: 5px;
-cursor: pointer;
-transition: 0.5s;
+
+#backButtons {
+    margin-top: 70px;
+    margin-left: 675px;
+    padding: 10px 30px;
+    background: #0a0a0a;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.5s;
 }
-#backButtons:hover{
+
+#backButtons:hover {
     background: #6a6b6d;
 }
