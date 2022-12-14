@@ -5,6 +5,7 @@ import { io } from 'socket.io-client';
 import "./Lobby.css"
 import Chat from './Chat';
 import Multiplayer from './Multiplayer';
+import axios from 'axios';
 
 
 
@@ -24,6 +25,8 @@ const Lobby = () => {
       } else {
         alert("NEED NAME & ROOM")
       }
+
+      
     };
     function nav(){
       navigate("/");

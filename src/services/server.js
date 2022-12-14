@@ -4,7 +4,30 @@ const http = require("http");
 const { Server } = require("socket.io");
 const cors = require("cors");
 
+
+var bodyParser = require('body-parser')
+var jsonParser = bodyParser.json()
+
 app.use(cors());
+
+let leaderboard = []; 
+
+app.get("/leaderBoard", (req, res) => { 
+  res.json(leaderboard); 
+})
+
+app.post("/addLeaderBoard", (req, res) => { 
+  console.log(req.body); 
+  /*data = { 
+    room: req.body.room,
+    author: req.body.author, 
+    score: req.body.score, 
+  }
+
+  leaderboard.push(data); */
+  
+})
+
 
 const server = http.createServer(app);
 
